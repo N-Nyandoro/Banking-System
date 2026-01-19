@@ -2,15 +2,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for Account operations
- * Handles all database CRUD operations for accounts
- */
+
 public class AccountDAO {
     
-    /**
-     * Create a new account in the database
-     */
+    //Create a new account in the database
     public boolean createAccount(AccountClass account) {
         String sql = "INSERT INTO accounts (account_number, customer_id, account_type, balance, " +
                      "interest_rate, withdrawal_limit, overdraft_limit, minimum_balance, " +
@@ -65,9 +60,7 @@ public class AccountDAO {
         }
     }
     
-    /**
-     * Retrieve an account by account number
-     */
+    //Retrieve an account by account number
     public AccountClass getAccountByNumber(String accountNumber) {
         String sql = "SELECT * FROM accounts WHERE account_number = ?";
         
@@ -88,9 +81,7 @@ public class AccountDAO {
         return null;
     }
     
-    /**
-     * Retrieve all accounts for a specific customer
-     */
+    //Retrieve all accounts for a specific customer
     public List<AccountClass> getAccountsByCustomerId(String customerId) {
         List<AccountClass> accounts = new ArrayList<>();
         String sql = "SELECT * FROM accounts WHERE customer_id = ? ORDER BY account_number";
@@ -112,9 +103,7 @@ public class AccountDAO {
         return accounts;
     }
     
-    /**
-     * Retrieve all accounts
-     */
+    //Retrieve all accounts
     public List<AccountClass> getAllAccounts() {
         List<AccountClass> accounts = new ArrayList<>();
         String sql = "SELECT * FROM accounts ORDER BY account_number";
@@ -134,9 +123,7 @@ public class AccountDAO {
         return accounts;
     }
     
-    /**
-     * Update account balance
-     */
+    //Update account balance
     public boolean updateAccountBalance(String accountNumber, double newBalance) {
         String sql = "UPDATE accounts SET balance = ? WHERE account_number = ?";
         
@@ -155,9 +142,7 @@ public class AccountDAO {
         }
     }
     
-    /**
-     * Update complete account information
-     */
+    //Update complete account information
     public boolean updateAccount(AccountClass account) {
         String sql = "UPDATE accounts SET balance = ?, interest_rate = ?, withdrawal_limit = ?, " +
                      "overdraft_limit = ?, minimum_balance = ? WHERE account_number = ?";
@@ -198,9 +183,7 @@ public class AccountDAO {
         }
     }
     
-    /**
-     * Delete an account
-     */
+    //Delete an account
     public boolean deleteAccount(String accountNumber) {
         String sql = "DELETE FROM accounts WHERE account_number = ?";
         
@@ -217,9 +200,7 @@ public class AccountDAO {
         }
     }
     
-    /**
-     * Get accounts by type
-     */
+    //Get accounts by type
     public List<AccountClass> getAccountsByType(String accountType) {
         List<AccountClass> accounts = new ArrayList<>();
         String sql = "SELECT * FROM accounts WHERE account_type = ? ORDER BY account_number";
@@ -241,9 +222,7 @@ public class AccountDAO {
         return accounts;
     }
     
-    /**
-     * Get total balance for a customer
-     */
+    //Get total balance for a customer
     public double getTotalBalanceByCustomerId(String customerId) {
         String sql = "SELECT SUM(balance) FROM accounts WHERE customer_id = ?";
         
@@ -264,9 +243,7 @@ public class AccountDAO {
         return 0.0;
     }
     
-    /**
-     * Get total number of accounts
-     */
+    //Get total number of accounts
     public int getAccountCount() {
         String sql = "SELECT COUNT(*) FROM accounts";
         
@@ -285,9 +262,7 @@ public class AccountDAO {
         return 0;
     }
     
-    /**
-     * Helper method to extract account from ResultSet
-     */
+    //Helper method to extract account from ResultSet
     private AccountClass extractAccountFromResultSet(ResultSet rs) throws SQLException {
         String accountNumber = rs.getString("account_number");
         String customerId = rs.getString("customer_id");
