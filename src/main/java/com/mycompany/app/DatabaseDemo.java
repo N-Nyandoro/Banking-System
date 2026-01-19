@@ -1,7 +1,3 @@
-/**
- * Comprehensive demo showing database integration with the banking system
- * This demonstrates all CRUD operations and transaction management
- */
 public class DatabaseIntegrationDemo {
     
     public static void main(String[] args) {
@@ -157,10 +153,6 @@ public class DatabaseIntegrationDemo {
         System.out.println("All data has been persisted to the database.");
         System.out.println("You can restart the application and the data will be available.");
         System.out.println("Database file location: ./bankdb.mv.db (H2) or bankdb.db (SQLite)");
-        
-        // Cleanup (optional - comment out to keep data)
-        // System.out.println("\n12. CLEANUP...");
-        // DatabaseConnection.closeConnection();
         
         System.out.println("\n=================================");
         System.out.println("Demo completed successfully!");
