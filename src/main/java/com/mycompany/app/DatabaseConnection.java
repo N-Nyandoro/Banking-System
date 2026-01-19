@@ -3,10 +3,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Manages database connections for the banking system.
- * Supports H2, SQLite, MySQL, and PostgreSQL databases.
- */
 public class DatabaseConnection {
     // Database configuration
     private static final String DB_TYPE = "H2"; // Change to "SQLITE", "MYSQL", or "POSTGRESQL"
@@ -31,9 +27,7 @@ public class DatabaseConnection {
     
     private static Connection connection = null;
     
-    /**
-     * Get a database connection based on the configured database type
-     */
+    //Get a database connection based on the configured database type
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
@@ -73,9 +67,7 @@ public class DatabaseConnection {
         return connection;
     }
     
-    /**
-     * Close the database connection
-     */
+    //Close the database connection
     public static void closeConnection() {
         if (connection != null) {
             try {
@@ -87,9 +79,7 @@ public class DatabaseConnection {
         }
     }
     
-    /**
-     * Initialize database tables (run once)
-     */
+    //Initialize database tables (run once)
     public static void initializeDatabase() {
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement()) {
@@ -158,9 +148,7 @@ public class DatabaseConnection {
         }
     }
     
-    /**
-     * Test database connection
-     */
+    //Test database connection
     public static void testConnection() {
         try {
             Connection conn = getConnection();
