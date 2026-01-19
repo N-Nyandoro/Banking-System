@@ -1,7 +1,3 @@
-/**
- * Enhanced Bank System that integrates with database using DAOs
- * This version persists all operations to the database
- */
 public class BankSystemWithDAO {
     private String bankName;
     private CustomerDAO customerDAO;
