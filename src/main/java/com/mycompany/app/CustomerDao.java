@@ -2,15 +2,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for Customer operations
- * Handles all database CRUD operations for customers
- */
 public class CustomerDAO {
     
-    /**
-     * Create a new customer in the database
-     */
+    //Create a new customer in the database
     public boolean createCustomer(CustomerClass customer) {
         String sql = "INSERT INTO customers (customer_id, first_name, last_name, email, phone, address) " +
                      "VALUES (?, ?, ?, ?, ?, ?)";
@@ -34,9 +28,7 @@ public class CustomerDAO {
         }
     }
     
-    /**
-     * Retrieve a customer by ID
-     */
+    //Retrieve a customer by ID
     public CustomerClass getCustomerById(String customerId) {
         String sql = "SELECT * FROM customers WHERE customer_id = ?";
         
@@ -57,9 +49,7 @@ public class CustomerDAO {
         return null;
     }
     
-    /**
-     * Retrieve a customer by email
-     */
+    //Retrieve a customer by email
     public CustomerClass getCustomerByEmail(String email) {
         String sql = "SELECT * FROM customers WHERE email = ?";
         
@@ -80,9 +70,7 @@ public class CustomerDAO {
         return null;
     }
     
-    /**
-     * Retrieve all customers
-     */
+    //Retrieve all customers
     public List<CustomerClass> getAllCustomers() {
         List<CustomerClass> customers = new ArrayList<>();
         String sql = "SELECT * FROM customers ORDER BY customer_id";
@@ -102,9 +90,7 @@ public class CustomerDAO {
         return customers;
     }
     
-    /**
-     * Update customer information
-     */
+    //Update customer information
     public boolean updateCustomer(CustomerClass customer) {
         String sql = "UPDATE customers SET first_name = ?, last_name = ?, email = ?, " +
                      "phone = ?, address = ? WHERE customer_id = ?";
@@ -128,9 +114,7 @@ public class CustomerDAO {
         }
     }
     
-    /**
-     * Delete a customer from the database
-     */
+    //Delete a customer from the database
     public boolean deleteCustomer(String customerId) {
         String sql = "DELETE FROM customers WHERE customer_id = ?";
         
@@ -147,9 +131,7 @@ public class CustomerDAO {
         }
     }
     
-    /**
-     * Search customers by name (first or last name)
-     */
+    //Search customers by name (first or last name)
     public List<CustomerClass> searchCustomersByName(String searchTerm) {
         List<CustomerClass> customers = new ArrayList<>();
         String sql = "SELECT * FROM customers WHERE first_name LIKE ? OR last_name LIKE ? " +
@@ -174,9 +156,7 @@ public class CustomerDAO {
         return customers;
     }
     
-    /**
-     * Get total number of customers
-     */
+    //Get total number of customers
     public int getCustomerCount() {
         String sql = "SELECT COUNT(*) FROM customers";
         
@@ -195,9 +175,7 @@ public class CustomerDAO {
         return 0;
     }
     
-    /**
-     * Check if email already exists
-     */
+    //Check if email already exists
     public boolean emailExists(String email) {
         String sql = "SELECT COUNT(*) FROM customers WHERE email = ?";
         
@@ -218,9 +196,7 @@ public class CustomerDAO {
         return false;
     }
     
-    /**
-     * Helper method to extract customer from ResultSet
-     */
+    //Helper method to extract customer from ResultSet
     private CustomerClass extractCustomerFromResultSet(ResultSet rs) throws SQLException {
         String customerId = rs.getString("customer_id");
         String firstName = rs.getString("first_name");
