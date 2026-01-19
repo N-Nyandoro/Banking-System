@@ -3,15 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 
-/**
- * Data Access Object for Transaction operations
- * Handles all database operations for transactions
- */
 public class TransactionDAO {
     
-    /**
-     * Transaction class to store transaction details
-     */
+    //Transaction class to store transaction details
     public static class Transaction {
         private int transactionId;
         private String accountNumber;
@@ -53,18 +47,14 @@ public class TransactionDAO {
         }
     }
     
-    /**
-     * Record a new transaction in the database
-     */
+    //Record a new transaction in the database
     public boolean recordTransaction(String accountNumber, String transactionType,
                                     double amount, double balanceAfter, String description) {
         return recordTransaction(accountNumber, transactionType, amount, balanceAfter, 
                                 description, null);
     }
     
-    /**
-     * Record a new transaction with optional to_account (for transfers)
-     */
+    //Record a new transaction with optional to_account (for transfers)
     public boolean recordTransaction(String accountNumber, String transactionType,
                                     double amount, double balanceAfter, String description,
                                     String toAccountNumber) {
@@ -94,9 +84,7 @@ public class TransactionDAO {
         }
     }
     
-    /**
-     * Get transaction by ID
-     */
+    //Get transaction by ID
     public Transaction getTransactionById(int transactionId) {
         String sql = "SELECT * FROM transactions WHERE transaction_id = ?";
         
@@ -117,9 +105,7 @@ public class TransactionDAO {
         return null;
     }
     
-    /**
-     * Get all transactions for a specific account
-     */
+    //Get all transactions for a specific account
     public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE account_number = ? " +
@@ -142,9 +128,7 @@ public class TransactionDAO {
         return transactions;
     }
     
-    /**
-     * Get all transactions for a specific account within a date range
-     */
+    //Get all transactions for a specific account within a date range
     public List<Transaction> getTransactionsByDateRange(String accountNumber,
                                                         Timestamp startDate,
                                                         Timestamp endDate) {
@@ -171,9 +155,7 @@ public class TransactionDAO {
         return transactions;
     }
     
-    /**
-     * Get all transactions by type
-     */
+    //Get all transactions by type
     public List<Transaction> getTransactionsByType(String accountNumber, String transactionType) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE account_number = ? " +
@@ -197,9 +179,7 @@ public class TransactionDAO {
         return transactions;
     }
     
-    /**
-     * Get recent transactions (last N transactions)
-     */
+    //Get recent transactions (last N transactions)
     public List<Transaction> getRecentTransactions(String accountNumber, int limit) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE account_number = ? " +
@@ -223,9 +203,7 @@ public class TransactionDAO {
         return transactions;
     }
     
-    /**
-     * Get all transactions for all accounts of a customer
-     */
+    //Get all transactions for all accounts of a customer
     public List<Transaction> getCustomerTransactions(String customerId) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT t.* FROM transactions t " +
@@ -249,9 +227,7 @@ public class TransactionDAO {
         return transactions;
     }
     
-    /**
-     * Get transaction count for an account
-     */
+    //Get transaction count for an account
     public int getTransactionCount(String accountNumber) {
         String sql = "SELECT COUNT(*) FROM transactions WHERE account_number = ?";
         
@@ -272,9 +248,7 @@ public class TransactionDAO {
         return 0;
     }
     
-    /**
-     * Calculate total deposits for an account
-     */
+    //Calculate total deposits for an account
     public double getTotalDeposits(String accountNumber) {
         String sql = "SELECT SUM(amount) FROM transactions " +
                      "WHERE account_number = ? AND transaction_type = 'DEPOSIT'";
@@ -296,9 +270,7 @@ public class TransactionDAO {
         return 0.0;
     }
     
-    /**
-     * Calculate total withdrawals for an account
-     */
+    //Calculate total withdrawals for an account
     public double getTotalWithdrawals(String accountNumber) {
         String sql = "SELECT SUM(amount) FROM transactions " +
                      "WHERE account_number = ? AND transaction_type = 'WITHDRAWAL'";
@@ -320,9 +292,7 @@ public class TransactionDAO {
         return 0.0;
     }
     
-    /**
-     * Delete all transactions for an account (used when closing an account)
-     */
+    //Delete all transactions for an account (used when closing an account)
     public boolean deleteTransactionsByAccount(String accountNumber) {
         String sql = "DELETE FROM transactions WHERE account_number = ?";
         
@@ -339,9 +309,7 @@ public class TransactionDAO {
         }
     }
     
-    /**
-     * Helper method to extract transaction from ResultSet
-     */
+    //Helper method to extract transaction from ResultSet
     private Transaction extractTransactionFromResultSet(ResultSet rs) throws SQLException {
         int transactionId = rs.getInt("transaction_id");
         String accountNumber = rs.getString("account_number");
