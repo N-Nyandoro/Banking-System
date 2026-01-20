@@ -9,10 +9,7 @@ import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- * Boundary Class - Account Management View
- * Handles account operations interface
- */
+
 public class AccountView {
     private Stage stage;
     private AccountController controller;
