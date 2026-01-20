@@ -7,10 +7,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-/**
- * Boundary Class - Login View
- * Handles user login interface
- */
 public class LoginView {
     private Stage stage;
     private LoginController controller;
