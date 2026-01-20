@@ -1,10 +1,5 @@
 import javafx.stage.Stage;
 
-/**
- * Controller Class - Login Controller
- * Mediates between LoginView and business logic
- * NO BUSINESS LOGIC - only coordination
- */
 public class LoginController {
     private Stage stage;
     private BankSystemWithDAO bankSystem;
@@ -22,9 +17,7 @@ public class LoginController {
         stage.show();
     }
     
-    /**
-     * Handle login request - coordinates authentication
-     */
+    //Handle login request - coordinates authentication
     public void handleLogin(String email, String password) {
         // Input validation only
         if (email == null || email.trim().isEmpty()) {
@@ -52,17 +45,14 @@ public class LoginController {
         }
     }
     
-    /**
-     * Navigate to account management view
-     */
+    //Navigate to account management view
+
     private void showAccountView(CustomerClass customer) {
         AccountController accountController = new AccountController(stage, bankSystem, customer);
         accountController.showAccountView();
     }
     
-    /**
-     * Show registration view
-     */
+    //Show registration view
     public void showRegisterView() {
         RegisterController registerController = new RegisterController(stage, bankSystem);
         registerController.showRegisterView();
