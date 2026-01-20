@@ -1,10 +1,7 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * Main Application Class - Entry Point
- * Integrates all modules: GUI (View), Controller, Model, and Database (DAO)
- */
+
 public class BankingApplication extends Application {
     
     private BankSystemWithDAO bankSystem;
@@ -25,9 +22,7 @@ public class BankingApplication extends Application {
         }
     }
     
-    /**
-     * Initialize the banking system with database and sample data
-     */
+    //Initialize the banking system with database and sample data
     private void initializeSystem() {
         System.out.println("=== Initializing Banking System ===");
         
@@ -46,9 +41,7 @@ public class BankingApplication extends Application {
         System.out.println("=== System Ready ===\n");
     }
     
-    /**
-     * Create sample data for testing
-     */
+    //Create sample data for testing
     private void createSampleData() {
         // Create customers
         CustomerClass customer1 = bankSystem.createCustomer(
