@@ -4,10 +4,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
 
-/**
- * Controller Class - Registration Controller
- * Handles new customer registration
- */
 public class RegisterController {
     private Stage stage;
     private BankSystemWithDAO bankSystem;
