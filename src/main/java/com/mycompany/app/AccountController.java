@@ -1,11 +1,6 @@
 import javafx.stage.Stage;
 import java.util.List;
 
-/**
- * Controller Class - Account Controller
- * Mediates between AccountView and business logic/database
- * NO BUSINESS LOGIC - only coordination and validation
- */
 public class AccountController {
     private Stage stage;
     private BankSystemWithDAO bankSystem;
@@ -26,9 +21,8 @@ public class AccountController {
         stage.show();
     }
     
-    /**
-     * Handle deposit request - validation only, business logic in model
-     */
+    //Handle deposit request - validation only, business logic in model
+
     public boolean handleDeposit(String accountNumber, double amount) {
         // Input validation
         if (accountNumber == null || accountNumber.isEmpty()) {
@@ -43,9 +37,8 @@ public class AccountController {
         return bankSystem.deposit(accountNumber, amount);
     }
     
-    /**
-     * Handle withdrawal request
-     */
+    //Handle withdrawal request
+
     public boolean handleWithdraw(String accountNumber, double amount) {
         // Input validation
         if (accountNumber == null || accountNumber.isEmpty()) {
@@ -60,9 +53,7 @@ public class AccountController {
         return bankSystem.withdraw(accountNumber, amount);
     }
     
-    /**
-     * Handle transfer request
-     */
+    //Handle transfer request
     public boolean handleTransfer(String fromAccount, String toAccount, double amount) {
         // Input validation
         if (fromAccount == null || toAccount == null || 
@@ -82,9 +73,7 @@ public class AccountController {
         return bankSystem.transfer(fromAccount, toAccount, amount);
     }
     
-    /**
-     * Handle create account request
-     */
+    //Handle create account request
     public boolean handleCreateAccount(String customerId, String accountType, double initialDeposit) {
         // Input validation
         if (customerId == null || accountType == null) {
@@ -109,39 +98,29 @@ public class AccountController {
         }
     }
     
-    /**
-     * Get customer accounts - delegates to DAO
-     */
+    //Get customer accounts - delegates to DAO
     public List<AccountClass> getCustomerAccounts(String customerId) {
         AccountDAO accountDAO = new AccountDAO();
         return accountDAO.getAccountsByCustomerId(customerId);
     }
     
-    /**
-     * Get account by number - delegates to business logic
-     */
+    //Get account by number - delegates to business logic
     public AccountClass getAccountByNumber(String accountNumber) {
         return bankSystem.findAccountByNumber(accountNumber);
     }
     
-    /**
-     * Get recent transactions - delegates to DAO
-     */
+    //Get recent transactions - delegates to DAO
     public List<TransactionDAO.Transaction> getRecentTransactions(String accountNumber, int limit) {
         TransactionDAO transactionDAO = new TransactionDAO();
         return transactionDAO.getRecentTransactions(accountNumber, limit);
     }
     
-    /**
-     * Show account statement
-     */
+    //Show account statement
     public void showAccountStatement(String accountNumber) {
         bankSystem.printAccountStatement(accountNumber);
     }
     
-    /**
-     * Handle logout
-     */
+    //Handle logout
     public void handleLogout() {
         LoginController loginController = new LoginController(stage, bankSystem);
         loginController.showLoginView();
